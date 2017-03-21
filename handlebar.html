@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+<script src="handlebars-v4.0.5.js"></script>  must be put after template
+-->
+<html>
+    <head>
+        <title>handlebar</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>handlebar</div>
+        <script id="entry-template" type="text/x-handlebars-template">
+        <div class="entry">
+            <h1>{{title}}</h1>
+            <div class="body">
+                {{body}}
+            </div>
+        </div>
+        </script>
+        <script id="escape-template" type="text/x-handlebars-template">
+        <div class="entry">
+            <div class="body">
+                {{{body}}}
+            </div>
+        </div>
+        </script>
+        <script id="block-template" type="text/x-handlebars-template">
+            <h1><i>block expressions</i></h1>
+            <h3>{{title}}</h3>
+            <div class="body">
+                {{#noop}}{{body}}{{/noop}}
+                {{#noop}}{{{body}}}{{/noop}}
+                {{#list people}}{{firstName}} {{lastName}}{{/list}}
+            </div>
+        </div>
+        </script>
+        <script id="path-template" type="text/x-handlebars-template">
+            <h1><i>Path</i></h1>
+            <div class="entry">
+                <h1>{{title}}</h1>
+                <h2>By {{author.name}}</h2>
+
+                <div class="body">
+                    {{!--body--}}  <!-- handlebar comment-->
+                    <!-- resolve name conflict between helpers and data fields-->
+                    {{this.body}}
+                    {{this/body}}
+                    {{./body}}
+                </div>
+            </div>
+        </script>
+        <script id="helper-template" type="text/x-handlebars-template">
+            <h1><i>Helper function</i></h1>
+            <div class="post">
+            <h1>By {{fullName author}}</h1>
+            <div class="body">{{body}}</div>
+
+            <h1>Comments</h1>
+
+            {{#each comments}}
+                <h2>By {{fullName author}}</h2>
+                <div class="body">{{body}}</div>
+            {{/each}}
+          </div>
+        </script>
+        <script id="each-template" type="text/x-handlebars-template">
+            <ul>
+                {{#each items}}
+                    <li>{{agree_button}}</li>
+                    <!--<li>{{!-- agree_button "My Text" class="my-class" visible=true counter=4 --}}</li>-->
+                {{/each}}
+            </ul>
+        </script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="handlebars-v4.0.5.js"></script>
+        <script src="handlebar-process.js"></script>
+    </body>
+</html>
